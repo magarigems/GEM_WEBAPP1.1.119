@@ -3,12 +3,41 @@
 <head>
   <title>MAGARI GEMS (PVT) LTD.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="robots" content="noindex, nofollow">
+
   <style>
-    body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-    iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: sans-serif; }
+    iframe {
+      display: none; /* The app is hidden until the password is correct */
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+    }
   </style>
 </head>
 <body>
-  <iframe src="https://script.google.com/macros/s/AKfycbz_JB8hUISVVZI1zCHs2MjRdJxBojzhbniZ1qtLBqvYAydk3fFW50sqzoVakcWYYVac/exec"></iframe>
+
+  <iframe id="appFrame" src="https://script.google.com/macros/s/AKfycbz_JB8hUISVVZI1zCHs2MjRdJxBojzhbniZ1qtLBqvYAydk3fFW50sqzoVakcWYYVac/exec"></iframe>
+
+  <script>
+    // --- Simple Password Protection ---
+    function checkPassword() {
+      // ⬇️ CHANGE THIS to your own secret password!
+      var correctPassword = "@123456789"; 
+      
+      var enteredPassword = prompt("Please enter the password to access:", "");
+
+      if (enteredPassword === correctPassword) {
+        // If password is correct, show the app
+        document.getElementById("appFrame").style.display = "block";
+      } else if (enteredPassword != null) {
+        // If password is wrong, show an error message
+        document.body.innerHTML = '<h2 style="text-align: center; margin-top: 50px;">Access Denied</h2>';
+      }
+    }
+
+    // Run the password check as soon as the page loads
+    checkPassword();
+  </script>
+
 </body>
 </html>
